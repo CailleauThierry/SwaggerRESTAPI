@@ -3,6 +3,35 @@ info:
   title: H Plus Sports API
   version: 1.0.0
 paths:
+  /product/{productId}:
+    get:
+      parameters: 
+        - in: path
+          name: productId
+          required: true
+          schema:
+            type: integer
+            example: 12345
+        - in: header
+          name: customer-security-header
+          required: false
+          schema:
+            type: integer
+            example: 1231-246468-123
+      responses:
+        200:
+          description: This is a list of the products in the Catalog
+          content: 
+            appplication/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 400
+                  name:
+                    type: string 
+                    example: Lemon Water
   /product:
     get:
       parameters: 
