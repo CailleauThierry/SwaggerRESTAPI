@@ -33,6 +33,23 @@ paths:
                     type: string 
                     example: Lemon Water
   /product:
+    post:
+      description: Add a product to the Catalog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  example: 400
+                name:
+                  type: string 
+                  example: Lemon Water
+      responses:
+        200:
+          description: The product has been created
     get:
       parameters: 
         - in: query
