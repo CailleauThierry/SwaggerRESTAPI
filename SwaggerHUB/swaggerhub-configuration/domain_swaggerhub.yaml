@@ -1,0 +1,54 @@
+# OpenAPI version identifier - required for OpenAPI 3.0 domains
+openapi: 3.0.0
+
+#######################
+# Optional info section
+#######################
+info:
+  title: HPLus Sports
+  description: Common components for HPLus Sports REST APIs
+  version: "3.0.2"
+
+components:
+
+  ####################
+  # Common data models
+  ####################
+  schemas:
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        productId:
+          type: integer
+          example: 1234
+        quantity:
+          type: integer
+          example: 1
+        orderDate:
+          type: string
+          format: date-time
+          example: 2019-01-13T16:37:30-80:00
+        customer:
+          $ref: '#/components/schemas/Customer'
+    Customer:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - customerNumber
+      properties:
+        customerNumber:
+          type: string
+          example: d290f1ee
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Smith
+        phone:
+          type: string
+          example: '555-555-5555'
