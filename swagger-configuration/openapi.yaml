@@ -25,6 +25,8 @@ paths:
             appplication/json:
               schema:
                 $ref: '#/components/schemas/Product'
+        500:
+          $ref: '#/components/responses/500ApiError'
   /product:
     post:
       description: Add a product to the Catalog
@@ -36,6 +38,8 @@ paths:
       responses:
         200:
           description: The product has been created
+        500:
+          $ref: '#/components/responses/500ApiError'
     get:
       parameters: 
         - in: query
@@ -62,6 +66,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Product'
+        500:
+          $ref: '#/components/responses/500ApiError'
 components:
   schemas:
     Product:
@@ -84,4 +90,19 @@ components:
         image:
           type: string
           example: https://hplussport.com/images/1234
+  responses:
+    500ApiError:
+      description: This is an unexpoected error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: string
+                example: 500
+              message:
+                type: string
+                example: this is an error
+        
   
