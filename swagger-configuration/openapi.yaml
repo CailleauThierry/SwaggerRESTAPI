@@ -24,14 +24,7 @@ paths:
           content: 
             appplication/json:
               schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    example: 400
-                  name:
-                    type: string 
-                    example: Lemon Water
+                $ref: '#/components/schemas/Product'
   /product:
     post:
       description: Add a product to the Catalog
@@ -39,14 +32,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  example: 400
-                name:
-                  type: string 
-                  example: Lemon Water
+              $ref: '#/components/schemas/Product'
       responses:
         200:
           description: The product has been created
@@ -75,10 +61,27 @@ paths:
               schema:
                 type: array
                 items:
-                  properties:
-                    id:
-                      type: integer
-                      example: 400
-                    name:
-                      type: string
-                      example: Lemon Water
+                  $ref: '#/components/schemas/Product'
+components:
+  schemas:
+    Product:
+      type: object
+      required:
+        - name
+      properties:
+        id:
+          type: integer
+          example: 400
+        name:
+          type: string 
+          example: Lemon Water
+        description:
+          type: string 
+          example: Lemon Water
+        image_title:
+          type: string 
+          example: mineral-water-lemon-lime
+        image:
+          type: string
+          example: https://hplussport.com/images/1234
+  
