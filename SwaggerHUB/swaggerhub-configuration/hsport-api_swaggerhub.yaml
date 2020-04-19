@@ -1,131 +1,38 @@
-openapi: 3.0.2
+openapi: 3.0.0
+# Added by API Auto Mocking Plugin
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/hplussportTC3/customer/1.0.0
 info:
-  title: H Plus Sports Catalog API
-  version: 1.0.0
+  description: This is an API for HPlusSport custyomers
+  version: "3.0.0"
+  title: Customer's API
+  contact:
+    email: you@hplussport.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
-  - name: product
-    description: this is a product-related operationb
+  - name: customer
+    description: customer related calls
 paths:
-  /product/{productId}:
+  /customer:
     get:
       tags:
-        - product
-      parameters:
-        - in: path
-          name: productId
-          required: true
-          schema:
-            type: integer
-            example: 12345
-        - in: header
-          name: customer-security-header
-          required: false
-          schema:
-            type: integer
-            example: 1231-246468-123
+        - customer
+      summary: searches customer
+      operationId: searchCustomer
+      description: |
+        By passing in the appropriate options, you can search for
+        available customer in the system
       responses:
-        200:
-          description: This is a list of the products in the Catalog
+        '200':
+          description: search results matching criteria
           content:
-            appplication/json:
-              schema:
-                $ref: '#/components/schemas/Product'
-        500:
-          $ref: '#/components/responses/500ApiError'
-  /product:
-    post:
-      security:
-        - password: [writeS]
-      tags:
-        - product
-      description: Add a product to the Catalog
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Product'
-      responses:
-        200:
-          description: The product has been created
-        500:
-          $ref: '#/components/responses/500ApiError'
-    get:
-      tags:
-        - product
-      parameters:
-        - $ref: '#/components/parameters/PageNumber'
-        - $ref: '#/components/parameters/PageSize'
-      responses:
-        200:
-          description: This is a list of the products in the Catalog
-          content:
-            appplication/json:
+            application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Product'
-        500:
-          $ref: '#/components/responses/500ApiError'
-components:
-  securitySchemes:
-    password:
-      type: oauth2
-      flows:
-        password:
-          tokenUrl: 'http://example.com/oauth/token'
-          scopes:
-            write: allows modifying resources
-            read: allows reading resources
-  parameters:
-    PageNumber:
-      in: query
-      name: pageNumber
-      description: Page number to return
-      required: false
-      schema: 
-        type: integer
-        example: 1
-    PageSize:
-      in: query
-      name: pageSize
-      description: Number of results in the page
-      required: false
-      schema:
-        type: integer
-        example: 10
-        maximum: 100
-  schemas:
-    Product:
-      type: object
-      required:
-        - name
-      properties:
-        id:
-          type: integer
-          example: 400
-        name:
-          type: string 
-          example: Lemon Water
-        description:
-          type: string 
-          example: Lemon Water
-        image_title:
-          type: string 
-          example: mineral-water-lemon-lime
-        image:
-          type: string
-          example: https://hplussport.com/images/1234
-  responses:
-    500ApiError:
-      description: This is an unexpoected error
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: string
-                example: 500
-              message:
-                type: string
-                example: this is an error
+                  $ref: 'https://api.swaggerhub.com/domains/hplussportTC3/hplus/1.0.0#/components/schemas/Customer'
+        '400':
+          description: bad input parameter
